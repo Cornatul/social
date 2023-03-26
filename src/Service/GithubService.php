@@ -42,6 +42,7 @@ class GithubService
     }
 
     /**
+     * @todo replace message with a message object
      * @throws GuzzleException
      * @throws \JsonException
      */
@@ -55,10 +56,10 @@ class GithubService
                 'Authorization' => 'token ' . $accessToken->getToken(),
             ],
             'body' => json_encode([
-                'description' => 'Gist created from Laravel Social Package',
+                'description' => 'Gist created by https://lzomedia.com',
                 'public' => true,
                 'files' => [
-                    'social.txt' => [
+                    'article.md' => [
                         'content' => $message,
                     ],
                 ],

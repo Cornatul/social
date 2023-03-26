@@ -83,8 +83,9 @@ class GithubController extends Controller
 
         $message = $request->input('message');
 
+
         $this->service->createGist($accessToken, $message);
 
-        return redirect('social.github.index')->with('success', 'Post shared successfully.');
+        return redirect(route("social.github.index"))->with('success', 'Post shared successfully.');
     }
 }

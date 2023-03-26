@@ -23,7 +23,10 @@
                 <div class="col-md-12">
                     <form action="{{ route('social.github.shareAction') }}" method="post">
                         @csrf
-                        <textarea name="message" class="form-control" placeholder="Summary"></textarea>
+                        <div class="form-group">
+                            <label for="title">{{ __('Message') }}</label>
+                            <textarea name="message" class="form-control" placeholder="Message"></textarea>
+                        </div>
                         <button type="submit" class="btn btn-primary">Share</button>
                     </form>
 
