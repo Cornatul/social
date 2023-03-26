@@ -17,8 +17,31 @@ class TwitterService
         $this->provider = $provider;
     }
 
-    public function getAuthUrl(array $options = ['scope' => ['tweet.write']]): string
+    public function getAuthUrl(): string
     {
+        $options = [
+            'scope' => [
+                'tweet.read',
+                'tweet.write',
+                'tweet.moderate.write',
+                'users.read',
+                'follows.read',
+                'follows.write',
+                'offline.access',
+                'space.read',
+                'mute.read',
+                'mute.write',
+                'like.read',
+                'like.write',
+                'list.read',
+                'list.write',
+                'block.read',
+                'block.write',
+                'bookmark.read',
+                'bookmark.write'
+            ]
+        ];
+
         return $this->provider->getAuthorizationUrl($options);
     }
 

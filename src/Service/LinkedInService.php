@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Cornatul\Social\Service;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\Http;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\LinkedIn;
 
@@ -35,11 +38,23 @@ class LinkedInService
         ]);
     }
 
+    /**
+     * @throws IdentityProviderException
+     * @throws GuzzleException
+     * @todo fix this method
+     */
     public function shareOnWall($accessToken, $message)
     {
-        $client = $this->provider->getAuthenticatedClient($accessToken);
+        $user = $this->provider->getResourceOwner($accessToken);
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $accessToken,
+            ]
+        ]);
+
         $body = [
-            'author' => 'urn:li:person:me',
+            'author' => 'urn:li:person:' . $user->getId(),
             'lifecycleState' => 'PUBLISHED',
             'specificContent' => [
                 'com.linkedin.ugc.ShareContent' => [
@@ -53,7 +68,8 @@ class LinkedInService
                 'com.linkedin.ugc.MemberNetworkVisibility' => 'PUBLIC',
             ],
         ];
-        $response = $client->post('ugcPosts', $body);
+
+        $response = $client->request('POST', 'https://api.linkedin.com/v2/shares', $body);
 
         return $response->getStatusCode() === 201;
     }
