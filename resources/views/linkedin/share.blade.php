@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <form action="{{ route('social.linkedin.shareAction') }}" method="post">
                         @csrf
-                        <textarea name="summary" class="form-control" placeholder="Summary"></textarea>
+                        <textarea name="message" class="form-control" placeholder="Summary"></textarea>
                         <button type="submit" class="btn btn-primary">Share</button>
                     </form>
 

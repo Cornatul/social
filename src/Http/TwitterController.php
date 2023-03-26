@@ -9,7 +9,9 @@ use Cornatul\Social\Service\TwitterService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\Github;
+use PHPUnit\TextUI\RuntimeException;
 use Smolblog\OAuth2\Client\Provider\Twitter;
 
 
@@ -37,25 +39,25 @@ class TwitterController extends Controller
         return view('social::twitter.index');
     }
 
-    public function login(Request $request)
+    public function login(Request $request): RedirectResponse | RuntimeException
     {
         if (!$request->has('code')) {
             $authUrl = $this->service->getAuthUrl();
             return redirect($authUrl);
         }
+        throw new \RuntimeException('Request does not have code.');
     }
 
 
-    //generate callback function
-
+    /**
+     * @throws IdentityProviderException
+     */
     public function callback(Request $request): RedirectResponse
     {
         $accessToken = $this->service->getAccessToken($request->input('code'));
         session()->put('twitter_access_token', $accessToken);
         return redirect()->route('social.twitter.share');
     }
-
-
 
     public function share()
     {
@@ -64,7 +66,7 @@ class TwitterController extends Controller
 
     public function shareAction(Request $request)
     {
-        $accessToken = session()->get('github_access_token');
+        $accessToken = session()->get('twitter_access_token');
 
         $this->service->shareOnWall($accessToken, $request->input('message'));
 

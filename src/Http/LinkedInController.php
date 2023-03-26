@@ -5,9 +5,13 @@ namespace Cornatul\Social\Http;
 
 
 use Cornatul\Social\Service\LinkedInService;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\LinkedIn;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 
 class LinkedInController extends Controller
@@ -59,10 +63,19 @@ class LinkedInController extends Controller
         return view('social::linkedin.share');
     }
 
+    /**
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws GuzzleException
+     * @throws IdentityProviderException
+     * @throws \JsonException
+     */
     public function shareAction(Request $request)
     {
         $accessToken = session()->get('linkedin_access_token');
+
         $this->service->shareOnWall($accessToken, $request->input('message'));
-        return redirect('social.linkedin.index')->with('success', 'Post shared successfully.');
+
+        return redirect(route('social.linkedin.index'))->with('success', 'Post shared successfully.');
     }
 }

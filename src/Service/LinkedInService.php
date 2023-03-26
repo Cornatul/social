@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Http;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\LinkedIn;
+use League\OAuth2\Client\Token\LinkedInAccessToken;
 
 class LinkedInService
 {
@@ -41,17 +42,21 @@ class LinkedInService
     /**
      * @throws IdentityProviderException
      * @throws GuzzleException
+     * @throws \JsonException
      * @todo fix this method
      */
-    public function shareOnWall($accessToken, $message)
+    public function shareOnWall(LinkedInAccessToken $accessToken, $message)
     {
         $user = $this->provider->getResourceOwner($accessToken);
 
-        $client = new Client([
-            'headers' => [
-                'Authorization' => 'Bearer ' . $accessToken,
-            ]
-        ]);
+        $client = new Client();
+
+
+        $headers = [
+            'Authorization' => 'Bearer ' . $accessToken->getToken(),
+            'Content-Type' => 'application/json',
+            'X-Restli-Protocol-Version' => '2.0.0',
+        ];
 
         $body = [
             'author' => 'urn:li:person:' . $user->getId(),
@@ -69,7 +74,10 @@ class LinkedInService
             ],
         ];
 
-        $response = $client->request('POST', 'https://api.linkedin.com/v2/shares', $body);
+        $response = $client->request('POST', 'https://api.linkedin.com/v2/ugcPosts', [
+            'headers' => $headers,
+            'json' => $body,
+        ]);
 
         return $response->getStatusCode() === 201;
     }
