@@ -2,13 +2,21 @@
 
 return [
     'linkedin' => [
-        'clientId' => env('LINKEDIN_CLIENT_ID', '775v6e6d8jut9w'),
-        'clientSecret' => env('LINKEDIN_CLIENT_SECRET', '98s0hqmbuE8PURwc'),
-        'redirectUri' => env('LINKEDIN_REDIRECT_URI', 'https://newsai.loc/social/linkedin/callback'),
+        'clientId' => env('LINKEDIN_CLIENT_ID', ''),
+        'clientSecret' => env('LINKEDIN_CLIENT_SECRET', ''),
+        'redirectUri' => env('LINKEDIN_REDIRECT_URI', ''),
     ],
+    'twitter' => [
+        'consumerKey' => env('TWITTER_CONSUMER_KEY', ''),
+        'consumerSecret' => env('TWITTER_CONSUMER_SECRET', ''),
+        'accessToken' => env('TWITTER_ACCESS_TOKEN', ''),
+        'accessTokenSecret' => env('TWITTER_ACCESS_TOKEN_SECRET', ''),
+        'apiVersion' => env('TWITTER_API_VERSION', '1.1'),
+    ],
+
     'github' => [
-        'clientId' => env('GITHUB_CLIENT_ID', '775v6e6d8jut9w'),
-        'clientSecret' => env('GITHUB_CLIENT_SECRET', '98s0hqmbuE8PURwc'),
-        'redirectUri' => env('GITHUB_REDIRECT_URI', 'https://newsai.loc/social/github/callback'),
-    ]
+        'clientId' => env('GITHUB_CLIENT_ID', ''),
+        'clientSecret' => env('GITHUB_CLIENT_SECRET', ''),
+        'redirectUri' => env('GITHUB_REDIRECT_URI', ''),
+    ],
 ];

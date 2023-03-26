@@ -3,6 +3,7 @@
 use Cornatul\Social\Http\GithubController;
 use Cornatul\Social\Http\LinkedInController;
 use Cornatul\Social\Http\SocialController;
+use Cornatul\Social\Http\TwitterController;
 
 Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'social.'], static function () {
 
@@ -22,10 +23,9 @@ Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'soci
     Route::get('/github/share', [GithubController::class, 'share'])->name('github.share');
     Route::post('/github/shareAction', [GithubController::class, 'shareAction'])->name('github.shareAction');
 
-    //@todo create the google my business
-    //todo create share on instagram
-    //todo create share on wasup maybe ?
 
-
+    Route::get('/twitter', [TwitterController::class, 'index'])->name('twitter.index');
+    Route::get('/twitter/share', [TwitterController::class, 'share'])->name('twitter.share');
+    Route::post('/twitter/shareAction', [TwitterController::class, 'shareAction'])->name('twitter.shareAction');
 
 });
