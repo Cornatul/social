@@ -25,8 +25,6 @@ Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'soci
 
 
     Route::get('/twitter', [TwitterController::class, 'index'])->name('twitter.index');
-    Route::get('/twitter/login', [TwitterController::class, 'login'])->name('twitter.login');
-    Route::get('/twitter/callback', [TwitterController::class, 'callback'])->name('twitter.callback');
     Route::get('/twitter/share', [TwitterController::class, 'share'])->name('twitter.share');
     Route::post('/twitter/shareAction', [TwitterController::class, 'shareAction'])->name('twitter.shareAction');
 

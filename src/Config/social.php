@@ -6,11 +6,12 @@ return [
         'clientSecret' => env('LINKEDIN_CLIENT_SECRET', ''),
         'redirectUri' => env('LINKEDIN_REDIRECT_URI', ''),
     ],
-
     'twitter' => [
-        'clientId' => env('TWITTER_CLIENT_ID', ''),
-        'clientSecret' => env('TWITTER_CLIENT_SECRET', ''),
-        'redirectUri' => env('TWITTER_REDIRECT_URI', ''),
+        'consumerKey' => env('TWITTER_CONSUMER_KEY', ''),
+        'consumerSecret' => env('TWITTER_CONSUMER_SECRET', ''),
+        'accessToken' => env('TWITTER_ACCESS_TOKEN', ''),
+        'accessTokenSecret' => env('TWITTER_ACCESS_TOKEN_SECRET', ''),
+        'apiVersion' => env('TWITTER_API_VERSION', '1.1'),
     ],
 
     'github' => [
