@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 namespace Cornatul\Social\Service;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\Github;
 use League\OAuth2\Client\Provider\LinkedIn;
+use League\OAuth2\Client\Token\AccessTokenInterface;
 
 class GithubService
 {
@@ -16,26 +19,41 @@ class GithubService
         $this->provider = $provider;
     }
 
-    public function getAuthUrl(array $options = ['scope' => ['gist']]): string
+    public function getAuthUrl(array $options = []): string
     {
+        $options = array_merge([
+            'scope' => [
+                'gist'
+            ],
+        ], $options);
+
         return $this->provider->getAuthorizationUrl($options);
     }
 
     /**
      * @throws IdentityProviderException
+     * @return AccessTokenInterface
      */
-    public function getAccessToken($code)
+    public function getAccessToken(string $code): AccessTokenInterface
     {
         return $this->provider->getAccessToken('authorization_code', [
             'code' => $code,
         ]);
     }
 
-    public function createGist($accessToken, $message)
+    /**
+     * @throws GuzzleException
+     * @throws \JsonException
+     */
+    public function createGist(AccessTokenInterface $accessToken, string $message)
     {
-        $client = $this->provider->getAuthenticatedClient($accessToken);
+        $client = new Client();
 
-        $response = $client->post('gists', [
+        $response = $client->post('https://api.github.com/gists', [
+            'headers' => [
+                'Accept' => 'application/vnd.github.v3+json',
+                'Authorization' => 'token ' . $accessToken->getToken(),
+            ],
             'body' => json_encode([
                 'description' => 'Gist created from Laravel Social Package',
                 'public' => true,
@@ -46,6 +64,8 @@ class GithubService
                 ],
             ], JSON_THROW_ON_ERROR),
         ]);
+
+        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 
     }
 }

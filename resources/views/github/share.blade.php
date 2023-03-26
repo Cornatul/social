@@ -21,9 +21,9 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <form action="{{ route('social.linkedin.shareAction') }}" method="post">
+                    <form action="{{ route('social.github.shareAction') }}" method="post">
                         @csrf
-                        <textarea name="summary" class="form-control" placeholder="Summary"></textarea>
+                        <textarea name="message" class="form-control" placeholder="Summary"></textarea>
                         <button type="submit" class="btn btn-primary">Share</button>
                     </form>
 
