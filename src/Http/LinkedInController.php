@@ -31,7 +31,7 @@ class LinkedInController extends Controller
 
     public function index()
     {
-        return view('social::linkedin');
+        return view('social::linkedin.index');
     }
 
     public function login(Request $request)
@@ -56,14 +56,12 @@ class LinkedInController extends Controller
 
     public function share()
     {
-        return view('social::linkedin-share');
+        return view('social::linkedin.share');
     }
 
     public function shareAction(Request $request)
     {
         $accessToken = session()->get('linkedin_access_token');
-        dd($accessToken);
-
         $this->service->shareOnWall($accessToken, $request->input('message'));
         return redirect('social.linkedin.index')->with('success', 'Post shared successfully.');
     }

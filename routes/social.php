@@ -1,8 +1,10 @@
 <?php
 
 use Cornatul\Social\Http\GithubController;
+use Cornatul\Social\Http\InstagramController;
 use Cornatul\Social\Http\LinkedInController;
 use Cornatul\Social\Http\SocialController;
+use Cornatul\Social\Http\TwitterController;
 
 Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'social.'], static function () {
 
@@ -22,9 +24,19 @@ Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'soci
     Route::get('/github/share', [GithubController::class, 'share'])->name('github.share');
     Route::post('/github/shareAction', [GithubController::class, 'shareAction'])->name('github.shareAction');
 
-    //@todo create the google my business
-    //todo create share on instagram
-    //todo create share on wasup maybe ?
+
+    Route::get('/instagram', [InstagramController::class, 'index'])->name('instagram.index');
+    Route::get('/instagram/login', [InstagramController::class, 'login'])->name('instagram.login');
+    Route::get('/instagram/callback', [InstagramController::class, 'callback'])->name('instagram.callback');
+    Route::get('/instagram/share', [InstagramController::class, 'share'])->name('instagram.share');
+    Route::post('/instagram/shareAction', [InstagramController::class, 'shareAction'])->name('instagram.shareAction');
+
+
+    Route::get('/twitter', [TwitterController::class, 'index'])->name('twitter.index');
+    Route::get('/twitter/login', [TwitterController::class, 'login'])->name('twitter.login');
+    Route::get('/twitter/callback', [TwitterController::class, 'callback'])->name('twitter.callback');
+    Route::get('/twitter/share', [TwitterController::class, 'share'])->name('twitter.share');
+    Route::post('/twitter/shareAction', [TwitterController::class, 'shareAction'])->name('twitter.shareAction');
 
 
 

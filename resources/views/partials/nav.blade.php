@@ -8,5 +8,13 @@
         <a class="nav-link {{ request()->routeIs('social.github') ? 'active'  : '' }}"
            href="{{ route('social.github.index') }}">{{ __('Github') }}</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('social.instagram') ? 'active'  : '' }}"
+           href="{{ route('social.instagram.index') }}">{{ __('Instagram') }}</a>
+    </li>
 
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('social.twitter') ? 'active'  : '' }}"
+           href="{{ route('social.twitter.index') }}">{{ __('Twitter') }}</a>
+    </li>
 </ul>
