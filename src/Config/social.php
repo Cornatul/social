@@ -19,4 +19,7 @@ return [
         'clientSecret' => env('GITHUB_CLIENT_SECRET', ''),
         'redirectUri' => env('GITHUB_REDIRECT_URI', ''),
     ],
+    'medium' => [
+        'token' => env('MEDIUM_TOKEN', ''),
+    ],
 ];

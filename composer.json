@@ -22,17 +22,19 @@
         }
     },
     "require": {
-        "php": "^8.1",
+        "php": "^8.1||^8.0||^7.4",
+        "atymic/twitter": "3.*",
         "guzzlehttp/guzzle": ">=7.5.0",
         "illuminate/support": ">=9.0.0",
+        "jonathantorres/medium-sdk": "dev-master",
         "league/oauth2-github": "dev-main",
         "league/oauth2-linkedin": "^5.1",
         "spatie/laravel-data": ">=3.0.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.5",
-        "orchestra/testbench": "^7.0",
-        "phpunit/phpunit": "^9.5"
+        "orchestra/testbench": "^8.0",
+        "phpunit/phpunit": "^10.0.7"
     },
     "minimum-stability": "dev",
     "prefer-stable": false,

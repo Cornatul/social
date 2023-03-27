@@ -2,6 +2,7 @@
 
 use Cornatul\Social\Http\GithubController;
 use Cornatul\Social\Http\LinkedInController;
+use Cornatul\Social\Http\MediumController;
 use Cornatul\Social\Http\SocialController;
 use Cornatul\Social\Http\TwitterController;
 
@@ -27,5 +28,9 @@ Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'soci
     Route::get('/twitter', [TwitterController::class, 'index'])->name('twitter.index');
     Route::get('/twitter/share', [TwitterController::class, 'share'])->name('twitter.share');
     Route::post('/twitter/shareAction', [TwitterController::class, 'shareAction'])->name('twitter.shareAction');
+
+
+    Route::get('/medium', [MediumController::class, 'index'])->name('medium.index');
+    Route::post('/medium/shareAction', [MediumController::class, 'shareAction'])->name('medium.shareAction');
 
 });
