@@ -1,14 +1,14 @@
 <?php
 
+use Cornatul\Social\Http\DevToController;
 use Cornatul\Social\Http\GithubController;
 use Cornatul\Social\Http\LinkedInController;
 use Cornatul\Social\Http\MediumController;
 use Cornatul\Social\Http\SocialController;
+use Cornatul\Social\Http\TumblrController;
 use Cornatul\Social\Http\TwitterController;
 
 Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'social.'], static function () {
-
-
     //generate the index page
     Route::get('/', [SocialController::class, 'index'])->name('index');
     Route::get('/linkedin', [LinkedInController::class, 'index'])->name('linkedin.index');
@@ -16,6 +16,13 @@ Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'soci
     Route::get('/linkedin/callback', [LinkedInController::class, 'callback'])->name('linkedin.callback');
     Route::get('/linkedin/share', [LinkedInController::class, 'share'])->name('linkedin.share');
     Route::post('/linkedin/shareAction', [LinkedInController::class, 'shareAction'])->name('linkedin.shareAction');
+
+
+    Route::get('/tumblr', [TumblrController::class, 'index'])->name('tumblr.index');
+    Route::get('/tumblr/login', [TumblrController::class, 'login'])->name('tumblr.login');
+    Route::get('/tumblr/callback', [TumblrController::class, 'callback'])->name('tumblr.callback');
+    Route::get('/tumblr/share', [TumblrController::class, 'share'])->name('tumblr.share');
+    Route::post('/tumblr/shareAction', [TumblrController::class, 'shareAction'])->name('tumblr.shareAction');
 
 
     Route::get('/github', [GithubController::class, 'index'])->name('github.index');
@@ -32,5 +39,9 @@ Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'soci
 
     Route::get('/medium', [MediumController::class, 'index'])->name('medium.index');
     Route::post('/medium/shareAction', [MediumController::class, 'shareAction'])->name('medium.shareAction');
+
+
+    Route::get('/devto', [DevToController::class, 'index'])->name('devto.index');
+    Route::post('/devto/shareAction', [DevToController::class, 'shareAction'])->name('devto.shareAction');
 
 });

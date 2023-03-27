@@ -43,7 +43,6 @@ class LinkedInService
      * @throws IdentityProviderException
      * @throws GuzzleException
      * @throws \JsonException
-     * @todo fix this method
      */
     public function shareOnWall(LinkedInAccessToken $accessToken, $message)
     {

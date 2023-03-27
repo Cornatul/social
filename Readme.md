@@ -4,5 +4,11 @@ Currently supported networks are:
 - LinkedIn
 - Github
 - Twitter
+- Medium
 
 ## Installation
+
+### Composer
+```bash
+composer require drupal/social
+```
