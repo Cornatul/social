@@ -11,10 +11,10 @@
         <a class="nav-link {{ request()->routeIs('social.github') ? 'active'  : '' }}"
            href="{{ route('social.github.index') }}">{{ __('Github') }}</a>
     </li>
-
     <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('social.twitter') ? 'active'  : '' }}"
-           href="#">{{ __('Dev.to') }}</a>
+        <a class="nav-link {{ request()->routeIs('social.medium') ? 'active'  : '' }}"
+           href="{{ route('social.medium.index') }}">{{ __('Medium') }}</a>
     </li>
+
 
 </ul>
