@@ -43,6 +43,7 @@ class TumblrService
                     "title" => $message->getTitle(),
                     "native_inline_images" => "true",
                     "state" => "published",
+                    'tags' => $message->getTagsAsString(),
                     "body" => $message->getBody() . Message::SIGNATURE,
                 ],
             ]);

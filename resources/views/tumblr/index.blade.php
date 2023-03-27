@@ -24,6 +24,13 @@
                       <input type="text" name="title" id="title" class="form-control">
                   </div>
                   <div class="form-group">
+                      <label for="title">{{ __('Tags') }}</label>
+                      <small class="text-muted">
+                          {{ __('Comma separated tags') }}
+                        </small>
+                      <input type="text" name="tags" id="title" class="form-control">
+                  </div>
+                  <div class="form-group">
                       <label for="title">{{ __('Image') }}</label>
                       <input type="text" name="image" id="title" class="form-control">
                   </div>

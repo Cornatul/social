@@ -89,6 +89,7 @@ class TumblrController extends Controller
             'title' => 'required',
             'image' => 'required',
             'body' => 'required',
+            'tags' => 'required'
         ]);
 
         $tumblrService = new TumblrService();
@@ -97,6 +98,7 @@ class TumblrController extends Controller
         $message->setTitle($request->get('title'));
         $message->setImage($request->get('image'));
         $message->setBody($request->get('body'));
+        $message->setTagsAsString($request->get('tags'));
 
         $tumblrService->shareOnWall($accessToken, $message);
 
