@@ -94,11 +94,12 @@ class TumblrController extends Controller
 
         $tumblrService = new TumblrService();
 
+        $tags = explode(',', $request->get('tags'));
         $message = new Message();
         $message->setTitle($request->get('title'));
         $message->setImage($request->get('image'));
         $message->setBody($request->get('body'));
-        $message->setTagsAsString($request->get('tags'));
+        $message->setTagsAsArray($tags);
 
         $tumblrService->shareOnWall($accessToken, $message);
 

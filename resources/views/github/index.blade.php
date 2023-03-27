@@ -36,7 +36,7 @@
                                 <small class="text-muted">
                                     {{ __('The content of the gist.') }}
                                 </small>
-                                <textarea name="message" rows="20" class="form-control" placeholder="Message"></textarea>
+                                <textarea name="message" id="content" rows="20" class="form-control" placeholder="Message"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Share</button>
                         </form>
@@ -50,4 +50,9 @@
         </div>
 
     </div>
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+    <script>
+        const easyMDE = new EasyMDE({element: document.getElementById('content')});
+    </script>
 @endsection
