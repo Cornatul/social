@@ -12,6 +12,7 @@ use Cornatul\Feeds\Models\Feed;
 use Cornatul\Feeds\Repositories\Interfaces\FeedRepositoryInterface;
 use Cornatul\News\DTO\NewsDTO;
 use Cornatul\News\Interfaces\NewsInterface;
+use Cornatul\Social\Tests\TestCase;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Storage;
 use Mockery;
 
 
-class SocialTest extends \Cornatul\Social\Tests\TestCase
+class SocialTest extends TestCase
 {
 
 

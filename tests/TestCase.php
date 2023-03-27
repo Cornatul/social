@@ -1,7 +1,6 @@
 <?php
 
 namespace Cornatul\Social\Tests;
-use Cornatul\News\NewsServiceProvider;
 use Cornatul\Social\SocialServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 class TestCase extends OrchestraTestCase
