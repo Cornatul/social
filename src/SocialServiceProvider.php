@@ -2,6 +2,9 @@
 declare(strict_types=1);
 namespace Cornatul\Social;
 
+
+use Cornatul\Social\Console\MediumPublishCommand;
+
 class SocialServiceProvider extends \Illuminate\Support\ServiceProvider
 {
 
@@ -16,6 +19,9 @@ class SocialServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/Config/social.php', 'social'
         );
+        $this->commands([
+            MediumPublishCommand::class,
+        ]);
     }
 
     public function register(): void
