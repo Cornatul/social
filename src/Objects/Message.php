@@ -10,7 +10,9 @@ class Message
     public string $url;
     public string $image;
     public string $summary;
-    public array $tags = ['laravel', 'php', 'social', 'medium', 'twitter', 'github'];
+    public array | string $tags = [];
+
+    const SIGNATURE = ' This post was create by https://lzomedia.com';
 
     /**
      * @return string
@@ -33,6 +35,7 @@ class Message
      */
     public function getBody(): string
     {
+        //todo add tags to this message
         return $this->body;
     }
 
@@ -93,9 +96,14 @@ class Message
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getTags(): array
+    public function getTagsAsString(): string
+    {
+        return implode(", #",$this->tags);
+    }
+
+    public function getTagsAsArray(): array
     {
         return $this->tags;
     }
@@ -103,7 +111,12 @@ class Message
     /**
      * @param array $tags
      */
-    public function setTags(array $tags): void
+    public function setTagsAsString(array $tags): void
+    {
+        $this->tags = implode(" #", $tags);
+    }
+
+    public function setTagsAsArray(array $tags): void
     {
         $this->tags = $tags;
     }

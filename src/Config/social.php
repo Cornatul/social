@@ -22,4 +22,13 @@ return [
     'medium' => [
         'token' => env('MEDIUM_TOKEN', ''),
     ],
+    'devto' => [
+        'token' => env('DEVTO_TOKEN', ''),
+    ],
+    'tumblr' => [
+        'identifier' => env('TUMBLR_IDENTIFIER', ''),
+        'secret' => env('TUMBLR_SECRET', ''),
+        'callback_uri' => env('TUMBLR_REDIRECT_URI', ''),
+        'blog' => env('TUMBLR_BLOG_NAME', ''),
+    ],
 ];

@@ -4,5 +4,25 @@ Currently supported networks are:
 - LinkedIn
 - Github
 - Twitter
+- Medium
+- Dev.to
+- Tumblr
 
 ## Installation
+
+### Composer
+```bash
+composer require cornatul/social
+```
+
+### Project still in development
+
+# To do
+- []Jobs Creation
+- []Facebook
+- []Instagram
+- []Pinterest
+- []Reddit
+
+# License
+MIT

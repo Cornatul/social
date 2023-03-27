@@ -27,9 +27,11 @@
         "guzzlehttp/guzzle": ">=7.5.0",
         "illuminate/support": ">=9.0.0",
         "jonathantorres/medium-sdk": "dev-master",
+        "league/oauth1-client": "^1.10",
         "league/oauth2-github": "dev-main",
         "league/oauth2-linkedin": "^5.1",
-        "spatie/laravel-data": ">=3.0.0"
+        "spatie/laravel-data": ">=3.0.0",
+        "tumblr/tumblr": "dev-master"
     },
     "require-dev": {
         "mockery/mockery": "^1.5",

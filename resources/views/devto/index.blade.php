@@ -1,16 +1,14 @@
 @extends('marketing::layouts.app')
 
-@section('title', __('Medium'))
+@section('title', __('DevTo'))
 
 @section('heading')
-    {{ __('Create your post on medium') }}
+    {{ __('Create your post on dev.to') }}
 @endsection
 
 @section('content')
     <!-- The nav !-->
     @include('social::partials.nav')
-
-
 
     <!-- Cards !-->
     <div class="card">
@@ -21,23 +19,13 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <form action="{{ route('social.medium.shareAction') }}" method="post">
+                    <form action="{{ route('social.devto.shareAction') }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="title">{{ __('Title') }}</label>
                             <small class="form-text text-muted">{{ __('The title of your post') }}</small>
-
                             <input type="text" name="title" id="title" class="form-control">
                         </div>
-
-
-                        <div class="form-group">
-                            <label for="title">{{ __('Url') }}</label>
-                            <small class="form-text text-muted">{{ __('The cannonical url') }}</small>
-
-                            <input type="text" name="url" id="title" class="form-control">
-                        </div>
-
                         <div class="form-group">
                             <label for="title">{{ __('Tags') }}</label>
                             <small class="form-text text-muted">{{ __('The tags of your post following this pattern tag1,tag2 ...') }}</small>
@@ -49,10 +37,9 @@
                             <small class="form-text text-muted">{{ __('The image of your post') }}</small>
                             <input type="text" name="image" id="title" class="form-control">
                         </div>
-
                         <div class="form-group">
                             <label for="content">{{ __('Content') }}</label>
-                            <small class="form-text text-muted">{{ __('The content of your post in mardown format') }}</small>
+                            <small class="form-text text-muted">{{ __('The content of your post in markdown format') }}</small>
                             <textarea name="body" id="content" class="form-control" rows="5"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Share</button>
