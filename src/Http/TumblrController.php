@@ -74,12 +74,6 @@ class TumblrController extends Controller
     }
 
 
-
-    public function share()
-    {
-        return view('social::tumblr.share');
-    }
-
     /**
      * @throws NotFoundExceptionInterface
      * @throws ContainerExceptionInterface
@@ -91,12 +85,18 @@ class TumblrController extends Controller
     {
         $accessToken = session()->get('tumblr_access_token');
 
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'body' => 'required',
+        ]);
+
         $tumblrService = new TumblrService();
 
         $message = new Message();
-        $message->setTitle("Some title");
-        $message->setBody("Some body");
-
+        $message->setTitle($request->get('title'));
+        $message->setImage($request->get('image'));
+        $message->setBody($request->get('body'));
 
         $tumblrService->shareOnWall($accessToken, $message);
 

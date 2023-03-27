@@ -38,12 +38,17 @@ class TumblrService
                 'auth' => 'oauth',
                 'handler' => $handlerStack,
                 'json' => [
+                    "type" => "text",
+                    "format" => "html",
                     "title" => $message->getTitle(),
-                    "body" => $message->getBody(),
+                    "native_inline_images" => "true",
+                    "state" => "published",
+                    "body" => $message->getBody() . Message::SIGNATURE,
                 ],
             ]);
-        }catch (RequestException $e){
-            dd($e->getResponse()->getBody()->getContents());
+        }catch (RequestException $e)
+        {
+            info($e->getResponse()?->getBody()->getContents());
         }
 
         return ($response->getBody()->getContents());

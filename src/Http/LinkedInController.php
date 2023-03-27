@@ -4,6 +4,7 @@ namespace Cornatul\Social\Http;
 
 
 
+use Cornatul\Social\Objects\Message;
 use Cornatul\Social\Service\LinkedInService;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
@@ -53,15 +54,9 @@ class LinkedInController extends Controller
     {
         $accessToken = $this->service->getAccessToken($request->input('code'));
         session()->put('linkedin_access_token', $accessToken);
-        return redirect()->route('social.linkedin.share');
+        return redirect()->route('social.linkedin.index');
     }
 
-
-
-    public function share()
-    {
-        return view('social::linkedin.share');
-    }
 
     /**
      * @throws NotFoundExceptionInterface
@@ -72,9 +67,27 @@ class LinkedInController extends Controller
      */
     public function shareAction(Request $request)
     {
+
+        $request->validate([
+            'title' => 'required',
+            'url' => 'required',
+            'summary' => 'required',
+            'message' => 'required',
+            'image' => 'required',
+        ]);
+
+        //todo inspect this code for the posting to see why it doesn't pick up the image
         $accessToken = session()->get('linkedin_access_token');
 
-        $this->service->shareOnWall($accessToken, $request->input('message'));
+        $message = new Message();
+
+        $message->setTitle($request->input('title'));
+        $message->setUrl($request->input('url'));
+        $message->setSummary($request->input('summary'));
+        $message->setBody($request->input('message'));
+        $message->setImage($request->input('image'));
+
+        $this->service->shareOnWall($accessToken, $message);
 
         return redirect(route('social.linkedin.index'))->with('success', 'Post shared successfully.');
     }

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Cornatul\Social\Service;
 
+use Cornatul\Social\Objects\Message;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Http;
@@ -44,12 +45,11 @@ class LinkedInService
      * @throws GuzzleException
      * @throws \JsonException
      */
-    public function shareOnWall(LinkedInAccessToken $accessToken, $message)
+    public function shareOnWall(LinkedInAccessToken $accessToken, Message $message)
     {
         $user = $this->provider->getResourceOwner($accessToken);
 
         $client = new Client();
-
 
         $headers = [
             'Authorization' => 'Bearer ' . $accessToken->getToken(),
@@ -63,9 +63,28 @@ class LinkedInService
             'specificContent' => [
                 'com.linkedin.ugc.ShareContent' => [
                     'shareCommentary' => [
-                        'text' => $message,
+                        'text' => $message->getBody(),
                     ],
-                    'shareMediaCategory' => 'NONE',
+                    'shareMediaCategory' => 'ARTICLE',
+                    'media' => [
+                        [
+                            'status' => 'READY',
+                            'description' => [
+                                'text' => $message->getSummary(),
+                            ],
+                            'originalUrl' => $message->getUrl(),
+                            'title' => [
+                                'text' => $message->getTitle(),
+                            ],
+                            'thumbnails' => [
+                                [
+                                    'image' => $message->getImage(),
+                                    'resolvedUrl' => $message->getImage(),
+                                ],
+                            ],
+                        ],
+                    ],
+
                 ],
             ],
             'visibility' => [
