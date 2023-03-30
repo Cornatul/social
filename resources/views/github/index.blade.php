@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    @if(session()->has('linkedin_access_token'))
+                    @if(session()->has('github_access_token'))
                         <form action="{{ route('social.github.shareAction') }}" method="post">
                             @csrf
                             <div class="form-group">

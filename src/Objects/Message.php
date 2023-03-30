@@ -2,6 +2,11 @@
 
 namespace Cornatul\Social\Objects;
 
+/**
+ * Class Message
+ * @todo Improve this class by using maybe the spatie data transfer object package
+ * @package Cornatul\Social\Objects
+ */
 class Message
 {
 
@@ -120,7 +125,5 @@ class Message
     {
         $this->tags = $tags;
     }
-
-
 
 }

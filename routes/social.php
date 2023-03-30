@@ -2,6 +2,7 @@
 
 use Cornatul\Social\Http\DevToController;
 use Cornatul\Social\Http\GithubController;
+use Cornatul\Social\Http\GoogleMBController;
 use Cornatul\Social\Http\LinkedInController;
 use Cornatul\Social\Http\MediumController;
 use Cornatul\Social\Http\SocialController;
@@ -18,6 +19,14 @@ Route::group(['middleware' => ['web','auth'],'prefix' => 'social', 'as' => 'soci
     Route::get('/linkedin/login', [LinkedInController::class, 'login'])->name('linkedin.login');
     Route::get('/linkedin/callback', [LinkedInController::class, 'callback'])->name('linkedin.callback');
     Route::post('/linkedin/shareAction', [LinkedInController::class, 'shareAction'])->name('linkedin.shareAction');
+
+    //Google
+    Route::get('/google', [GoogleMBController::class, 'index'])->name('google.index');
+    Route::get('/google/login', [GoogleMBController::class, 'login'])->name('google.login');
+    Route::get('/google/callback', [GoogleMBController::class, 'callback'])->name('google.callback');
+    Route::post('/google/shareAction', [GoogleMBController::class, 'shareAction'])->name('google.shareAction');
+
+
 
     //Twitter
     Route::get('/twitter', [TwitterController::class, 'index'])->name('twitter.index');

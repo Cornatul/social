@@ -70,7 +70,7 @@ class TumblrController extends Controller
         session()->put('tumblr_access_token', $tokenCredentials);
 
 
-        return redirect()->route('social.tumblr.share');
+        return redirect()->route('social.tumblr.index');
     }
 
 
